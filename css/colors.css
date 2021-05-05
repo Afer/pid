@@ -1,0 +1,40 @@
+.dark-blue-background{
+	background-color: rgb(31, 84, 145);
+}
+
+.dark-blue-text{
+	color: rgb(31, 84, 145);
+}
+
+.orange-background{
+	background-color: rgb(244, 122, 33);
+}
+
+.orange-text{
+	color: rgb(244, 122, 33);
+}
+
+.light-blue-background{
+	color: white;
+	background-color: rgb(19, 181, 231);
+}
+
+.light-blue-text{
+	color: rgb(19, 181, 231);
+}
+
+.green-background{
+	background-color: rgb(145, 193, 62);
+}
+
+.green-text{
+	color: rgb(145, 193, 62);
+}
+
+.white-text{
+	color: #FFF;
+}
+
+a:hover{
+	color: rgb(244, 122, 33);
+}
