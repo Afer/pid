@@ -1,5 +1,4 @@
 var config = {
-	pageRoot: '/pages/',
 	menu: [
 		{id: 'home', link: 'home', label: ''},
 		{id: 'network-partners', link: 'network-partners', label: 'Network Partners'},
@@ -187,13 +186,22 @@ var index = {
 	ctrl: {
 		init: function(){
 			index.ctrl.buildMenu();
+
+			index.ctrl.bindMenuEvents();
+
+			index.ctrl.processUrl();
 		},
 
 		buildMenu: function(){
 			var appendString = "";
 			for (var i = 1; i < config.menu.length; i++){
 				appendString += index.ui.menuTemplateHTML(i);
+
+				index.ctrl.loadPageIntoCache(config.menu[i].link);
 			}
+
+			//load home page manually - logo acts as home page link
+			index.ctrl.loadPageIntoCache('home');
 
 			$("#navBarLinks").html(appendString);
 		},
@@ -298,7 +306,7 @@ var index = {
 			var data = config.menu[dataIndex];
 
 			var appendString =  "<div id='" + data.id + "' class='menuItem'>";
-				appendString += "	<a href='" + config.pageRoot + data.link + ".html'>" + data.label + "</a>";
+				appendString += "	<a href='' data-link='" + data.link + "'>" + data.label + "</a>";
 				appendString += "</div>";
 
 			return appendString;
@@ -316,7 +324,7 @@ var index = {
 				appendString += "				<div class='homeSectionDesc'>" + index.ui.parseDesc(data.desc) + "</div>";
 				appendString += "			</div>";
 				appendString += "			<div class='homeSectionImageContainer " + floatClass + "'>";
-				appendString += "				<img class='homeSectionImage' src='../images/"+data.image+"' />";
+				appendString += "				<img class='homeSectionImage' src='images/"+data.image+"' />";
 				appendString += "			</div>";
 				appendString += "		</div>";
 
@@ -324,12 +332,12 @@ var index = {
 				appendString += "			<table width='100%'><thead></thead><tbody><tr>";
 
 				if (dataIndex % 2 == 0){
-					appendString += "	<td width='40%'><img class='homeSectionImage' src='../images/"+data.image+"' /></td>";
+					appendString += "	<td width='40%'><img class='homeSectionImage' src='images/"+data.image+"' /></td>";
 					appendString += "	<td width='60%'><h2 class='homeSectionHeader light-blue-text'>" + data.header + "</h2><div class='homeSectionDesc'>" + index.ui.parseDesc(data.desc) + "</div></td>";
 				}
 				else{
 					appendString += "	<td width='60%'><h2 class='homeSectionHeader light-blue-text'>" + data.header + "</h2><div class='homeSectionDesc'>" + index.ui.parseDesc(data.desc) + "</div></td>";
-					appendString += "	<td width='40%'><img class='homeSectionImage' src='../images/"+data.image+"' /></td>";
+					appendString += "	<td width='40%'><img class='homeSectionImage' src='images/"+data.image+"' /></td>";
 				}
 
 				appendString += "		</tr></tbody></table></div>";
@@ -361,7 +369,7 @@ var index = {
 			var appendString =  "<div class='homeSection white-container'>";
 				appendString += "	<table width='100%'><thead></thead><tbody>";
 				appendString += "		<tr>";
-				appendString += "			<td width='50%'><img class='homeSectionImage' src='../images/"+data.image+"' /></td>";
+				appendString += "			<td width='50%'><img class='homeSectionImage' src='images/"+data.image+"' /></td>";
 				appendString += "			<td width='50%'><div class='homeSectionDesc'>" + index.ui.parseDesc(data.desc) + "</div></td>";
 				appendString += "		</tr>";
 				appendString += "	</tbody></table>";
