@@ -93,8 +93,8 @@ h2{
 
 #mobile-bar-home{
 	width: auto;
-	float: right;
 	line-height: 40px;
+	margin-left: 20px;
 }
 
 #mobile-bar-home a{
